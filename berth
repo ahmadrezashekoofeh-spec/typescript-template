@@ -1,0 +1,38 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+def run_sensitivity_analysis(vessels_list, base_params):
+    tug_counts = [2, 3, 4, 5, 6, 7, 8]
+    total_costs = []
+    
+    print("Starting Sensitivity Analysis...")
+    for count in tug_counts:
+        # تغییر تعداد یدک‌کش در پارامترها
+        base_params.NT = count
+        
+        # اجرای سریع مدل برای این تعداد یدک‌کش
+        # برای دقت بیشتر می‌توانید از ALNS استفاده کنید، اما Greedy هم روند را نشان می‌دهد
+        solution = generate_fast_solution(vessels_list, base_params)
+        
+        cost = sum(v.calculate_cost() for v in solution)
+        total_costs.append(cost)
+        print(f"Tugs: {count} | Total Cost: {cost}")
+
+    # رسم نمودار تحلیل حساسیت
+    plt.figure(figsize=(10, 6), dpi=150)
+    plt.plot(tug_counts, total_costs, marker='o', linestyle='-', color='red', linewidth=2)
+    
+    # اضافه کردن جزئیات به نمودار
+    plt.title('Sensitivity Analysis: Impact of Tugboat Fleet Size on Total Cost', fontsize=14)
+    plt.xlabel('Number of Tugboats (NT)', fontsize=12)
+    plt.ylabel('Total System Cost ($)', fontsize=12)
+    plt.grid(True, linestyle='--', alpha=0.7)
+    
+    # مشخص کردن نقطه فعلی (مثلاً ۵ یدک‌کش)
+    plt.annotate('Current Capacity', xy=(5, total_costs[3]), xytext=(6, total_costs[3]+20000),
+                 arrowprops=dict(facecolor='black', shrink=0.05))
+
+    plt.show()
+
+# اجرای تحلیل حساسیت روی ۱۶۰ کشتی
+run_sensitivity_analysis(vessels_input, params)
