@@ -1,0 +1,52 @@
+{
+  "vessels": [
+    {
+      "id": "V001",
+      "arrival": 0,
+      "length": 180,
+      "tug_req": 2,
+      "pref_berth": 50,
+      "due_time": 15,
+      "workload": 450
+    },
+    {
+      "id": "V002",
+      "arrival": 2,
+      "length": 250,
+      "tug_req": 3,
+      "pref_berth": 200,
+      "due_time": 25,
+      "workload": 800
+    },
+    {
+      "id": "V003",
+      "arrival": 5,
+      "length": 120,
+      "tug_req": 1,
+      "pref_berth": 400,
+      "due_time": 12,
+      "workload": 300
+    },
+    {
+      "id": "V004",
+      "arrival": 8,
+      "length": 300,
+      "tug_req": 3,
+      "pref_berth": 100,
+      "due_time": 30,
+      "workload": 1200
+    }
+  ],
+  "params": {
+    "T_initial": 1000.0,
+    "T_termination": 0.1,
+    "cooling_rate": 0.97,
+    "max_iter": 100,
+    "quay_length": 1000,
+    "total_tugs": 5,
+    "weight_tug": 50,
+    "weight_berth": 10,
+    "weight_delay": 100,
+    "destruction_rate": 0.25
+  }
+}
